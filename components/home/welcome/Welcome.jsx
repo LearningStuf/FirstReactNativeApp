@@ -7,13 +7,13 @@ import {
   TextInput,
   Image,
   FlatList 
-} from 'react-native'
-import { useRouter } from 'expo-router'
+} from "react-native"
+import { useRouter } from "expo-router"
 
 
 
-import styles from './welcome.style'
-import { icons, SIZES } from '../../../constants'
+import styles from "./welcome.style"
+import { icons, SIZES } from "../../../constants"
 
 const jobTypes = ["Full-time", "Part-time", "Contractor"];
 
@@ -23,8 +23,8 @@ const Welcome = () => {
   return (
     <View>
       <View style = {styles.container}>
-      <Text style = {styles.userName}>Hello Hassan</Text>
-      <Text style = {styles.welcomeMessage}>Find your recipe</Text>
+        <Text style = {styles.userName}>Hello Hassan</Text>
+        <Text style = {styles.welcomeMessage}>Find your recipe</Text>
       </View>
       <View style = {styles.searchContainer}>
         <View style={styles.searchWrapper}>
@@ -45,7 +45,7 @@ const Welcome = () => {
       </View>
 
       
-      <View>
+      <View style={styles.tabsContainer}>
         <FlatList
         data = {jobTypes}
         renderItem={({item}) => (
