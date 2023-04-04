@@ -11,7 +11,7 @@ const PopularJobCard = ({item, selectedJob, handleCardPress}) => {
       <TouchableOpacity style = {styles.logoContainer(selectedJob, item)}>
         <Image
           source={{uri: item.strMealThumb}}
-          resizeMode='cover'
+          // resizeMode='cover'
           style = {styles.logoImage}
         />
       </TouchableOpacity>

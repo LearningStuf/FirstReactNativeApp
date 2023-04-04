@@ -4,11 +4,13 @@ import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
 
 const styles = StyleSheet.create({
   container: (selectedJob, item) => ({
-    width: 250,
-    padding: SIZES.xLarge,
-    backgroundColor: selectedJob === item.job_id ? COLORS.primary : "#FFF",
+    
+    // padding: SIZES.xLarge,
+    // backgroundColor: selectedJob === item.idMeal ? COLORS.primary : "#FFF",
+    // borderColor: "red",
+    // borderWidth: 1,
     borderRadius: SIZES.medium,
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     ...SHADOWS.medium,
     shadowColor: COLORS.white,
   }),
@@ -23,18 +25,23 @@ const styles = StyleSheet.create({
 
 
   logoContainer: (selectedJob, item) => ({
-    width: 50,
-    height: 50,
-    backgroundColor: selectedJob === item.job_id ? "#FFF" : COLORS.white,
-    borderRadius: SIZES.medium,
+    // width: 50,
+    // height: 50,
+    width: 150,
+    height: 150,
+    // borderColor: "red",
+    // borderWidth: 1,
+    backgroundColor: selectedJob === item.idMeal ? "#FFF" : COLORS.white,
+    // borderRadius: SIZES.medium,
     justifyContent: "center",
     alignItems: "center",
   }),
 
 
   logoImage: {
-    width: 50,
-    height: 50,
+    width: "100%",
+    height: "100%",
+    borderRadius: SIZES.medium,
   },
   companyName: {
     fontSize: SIZES.medium,
@@ -46,9 +53,10 @@ const styles = StyleSheet.create({
     marginTop: SIZES.large,
   },
   jobName: (selectedJob, item) => ({
-    fontSize: SIZES.large,
+    width: 150,
+    fontSize: SIZES.small,
     fontFamily: FONT.medium,
-    color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
+    color: selectedJob === item.idMeal ? COLORS.white : COLORS.primary,
   }),
   infoWrapper: {
     flexDirection: "row",
