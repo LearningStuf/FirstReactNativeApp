@@ -4,6 +4,7 @@ import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
 import Welcome from "./home/welcome/Welcome";
 import Nearbyjobs from "./home/nearby/Nearbyjobs";
 import Popularjobs from "./home/popular/Popularjobs";
+import APICALL from "./home/testingcode/APICALL";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -20,6 +21,7 @@ export {
   Welcome,
   Nearbyjobs,
   Popularjobs,
+  APICALL,
   Company,
   JobTabs,
   JobAbout,
