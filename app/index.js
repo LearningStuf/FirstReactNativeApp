@@ -4,7 +4,7 @@ import { View, ScrollView,SafeAreaView } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
 import {COLORS, icons, images, SIZES} from "../constants";
-import {Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome, RecentRecipe} from "../components";
+import {Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome, RecentRecipe, SearchIngredient, Recommend, Cookout} from "../components";
 
 const Home = () => {
     const router = useRouter();
@@ -36,6 +36,10 @@ const Home = () => {
                     <Popularjobs/>
                     <RecentRecipe/>
                     <Nearbyjobs/>
+                    <SearchIngredient/>
+                    <Recommend/>
+                    <Cookout/>
+                    
             </View>
             </ScrollView>
 

@@ -5,6 +5,9 @@ import Welcome from "./home/welcome/Welcome";
 import Nearbyjobs from "./home/nearby/Nearbyjobs";
 import Popularjobs from "./home/popular/Popularjobs";
 import RecentRecipe from "./home/recent/RecentRecipe";
+import SearchIngredient from "./home/ingredient/SearchIngredient";
+import Recommend from "./home/recommend/Recommend";
+import Cookout from "./home/cookout/Cookout";
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -26,5 +29,8 @@ export {
   JobFooter,
   Specifics,
   NearbyJobCard,
-  RecentRecipe
+  RecentRecipe,
+  SearchIngredient,
+  Recommend,
+  Cookout
 };

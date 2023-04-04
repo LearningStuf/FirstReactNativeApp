@@ -2,13 +2,13 @@ import {useState} from 'react'
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
 import { useRouter } from 'expo-router'
 
-import styles from './nearbyjobs.style'
+import styles from './searchIngredient.style'
 import  {COLORS, SIZES}  from '../../../constants';
 // import PopulaJobCard from '../../common/cards/singleCard/SingleCard';
 import SingleCard from '../../common/cards/singleCard/SingleCard';
 import useFetch from '../../../hook/useFetch';
 
-const Nearbyjobs = () => {
+const SearchIngredient = () => {
 
   const router = useRouter();
   // const isLoading  = false;
@@ -20,7 +20,7 @@ const Nearbyjobs = () => {
     num_pages: "1",
   });
 
-  var urlImage = "https://images.unsplash.com/photo-1543353071-10c8ba85a904?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  var urlImage = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=732&q=80"
 
   console.log(data)
 
@@ -28,7 +28,7 @@ const Nearbyjobs = () => {
   return (
     <View style = {styles.container}>
       <View style = {styles.header}>
-        <Text style = {styles.headerTitle}>Search By Category</Text>
+        <Text style = {styles.headerTitle}>Search By Ingredient</Text>
         {/* <TouchableOpacity>
           <Text style = {styles.headerBtn}>Show all</Text>
         </TouchableOpacity> */}
@@ -60,4 +60,4 @@ const Nearbyjobs = () => {
   )
 }
 
-export default Nearbyjobs
+export default SearchIngredient
