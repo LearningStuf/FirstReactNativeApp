@@ -2,12 +2,12 @@ import {useState} from 'react'
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
 import { useRouter } from 'expo-router'
 
-import styles from './popularjobs.style'
+import styles from './RecentRecipe.style'
 import  {COLORS, SIZES}  from '../../../constants';
 import PopulaJobCard from '../../common/cards/popular/PopularJobCard';
 import useFetch from '../../../hook/useFetch';
 
-const Popularjobs = () => {
+const RecentRecipe = () => {
 
   const router = useRouter();
   // const isLoading  = false;
@@ -25,7 +25,7 @@ const Popularjobs = () => {
   return (
     <View style = {styles.container}>
       <View style = {styles.header}>
-        <Text style = {styles.headerTitle}>Saved Recipies</Text>
+        <Text style = {styles.headerTitle}>Recent Recipies</Text>
         <TouchableOpacity>
           <Text style = {styles.headerBtn}>Show all</Text>
         </TouchableOpacity>
@@ -53,4 +53,4 @@ const Popularjobs = () => {
   )
 }
 
-export default Popularjobs
+export default RecentRecipe
