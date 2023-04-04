@@ -12,6 +12,16 @@ const styles = StyleSheet.create({
     ...SHADOWS.medium,
     shadowColor: COLORS.white,
   }),
+  // logoContainer: (selectedJob, item) => ({
+  //   width: 50,
+  //   height: 50,
+  //   backgroundColor: selectedJob === item.job_id ? "#FFF" : COLORS.white,
+  //   borderRadius: SIZES.medium,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // }),
+
+
   logoContainer: (selectedJob, item) => ({
     width: 50,
     height: 50,
@@ -20,9 +30,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   }),
+
+
   logoImage: {
-    width: "70%",
-    height: "70%",
+    width: 50,
+    height: 50,
   },
   companyName: {
     fontSize: SIZES.medium,

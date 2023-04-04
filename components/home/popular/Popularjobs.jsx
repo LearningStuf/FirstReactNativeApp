@@ -13,9 +13,15 @@ const Popularjobs = () => {
   // const isLoading  = false;
   // const error = false;
 
-  const {data, isLoading, error} = useFetch()
+  // const {data, isLoading, error} = useFetch()
+  const { data, isLoading, error } = useFetch("search", {
+    query: "React developer",
+    num_pages: "1",
+  });
 
   console.log(data)
+
+
   return (
     <View style = {styles.container}>
       <View style = {styles.header}>
@@ -31,7 +37,7 @@ const Popularjobs = () => {
           <Text>Something went wrogn</Text>
         ) : (
           <FlatList
-            data = {[1,2,3,4]}
+            data = {data}
             renderItem={({item}) => (
               <PopulaJobCard 
                 item = {item}
