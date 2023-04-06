@@ -6,7 +6,7 @@ import  {COLORS, SIZES}  from '../../../constants';
 import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import useFetch from '../../../hook/useFetch';
 
-const Nearbyjobs = () => {
+const Nearbyjobs = (url) => {
   const router = useRouter();
 
   const { data, isLoading, error } = useFetch("https://www.themealdb.com/api/json/v1/1/categories.php", "");
@@ -27,13 +27,13 @@ const Nearbyjobs = () => {
         {isLoading ? (
           <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ?(
-          <Text>Something went wrogn</Text>
+          <Text>Something went wrong</Text>
         ) : (
           newData?.map((categ) => (
             <NearbyJobCard
               job = {categ}
               key  = {'categ-${categ?.idCategory}'}
-              handleNavigate = {() => router.push(`/recipe-details/${categ.idCategory}`)}
+              handleNavigate = {() => router.push(`/recipe-by-categories/${categ.strCategory}`)}
             />
           ))
         )}

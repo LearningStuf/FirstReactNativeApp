@@ -26,7 +26,13 @@ const NearbyJobCard = ({job, handleNavigate}) => {
           {item.strMeal}
       </Text> */}
  
-    
+      {/* <Text style={{position: 'absolute',
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: 0,
+      Bottom: 10*0.93,
+      right: 0,
+      marginLeft: 10*0.18, }}>Btn</Text> */}
     
     </TouchableOpacity>
   )
