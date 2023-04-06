@@ -8,53 +8,41 @@ import  {COLORS, SIZES}  from '../../../constants';
 import SingleCard from '../../common/cards/singleCard/SingleCard';
 import useFetch from '../../../hook/useFetch';
 
-const SearchIngredient = () => {
+const SearchIngredient = (img) => {
 
   const router = useRouter();
   // const isLoading  = false;
   // const error = false;
 
   // const {data, isLoading, error} = useFetch()
-  const { data, isLoading, error } = useFetch("search", {
-    query: "React developer",
-    num_pages: "1",
-  });
+  // const { data, isLoading, error } = useFetch("search", {
+  //   query: "React developer",
+  //   num_pages: "1",
+  // });
 
-  var urlImage = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=732&q=80"
+  var urlImage = img.img
+  var Title = img.localTitle
 
-  console.log(data)
-
+  // console.log(data)
+  // console.log ("This is search ingredient")
+  // console.log (Title)
+  // console.log (urlImage)
 
   return (
     <View style = {styles.container}>
       <View style = {styles.header}>
-        <Text style = {styles.headerTitle}>Search By Ingredient</Text>
+        <Text style = {styles.headerTitle}>{Title}</Text>
         {/* <TouchableOpacity>
           <Text style = {styles.headerBtn}>Show all</Text>
         </TouchableOpacity> */}
       </View>
       <View style = {styles.cardsContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="large" color={COLORS.primary} />
-        ) : error ?(
-          <Text>Something went wrogn</Text>
-        ) : (
-          // <FlatList
-          //   data = {data}
-          //   renderItem={({item}) => (
-          //     <PopulaJobCard 
-          //       item = {item}
-          //     />
-          //   )}
-          //   keyExtractor = {item => item?.idMeal}
-          //   contentContainerStyle = {{columnGap: SIZES.medium}}
-          //   horizontal
-          // />
 
-              <SingleCard 
-                url = {urlImage}
-              />
-        )}
+        <SingleCard 
+          url = {urlImage}
+          handleNavigate = {() => router.push(`/Category/categories`)}
+        />
+
       </View>
     </View>
   )

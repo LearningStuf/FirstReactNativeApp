@@ -22,7 +22,7 @@ const Recommend = () => {
 
   var urlImage = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
 
-  console.log(data)
+  // console.log(data)
 
 
   return (
@@ -34,27 +34,9 @@ const Recommend = () => {
         </TouchableOpacity> */}
       </View>
       <View style = {styles.cardsContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="large" color={COLORS.primary} />
-        ) : error ?(
-          <Text>Something went wrogn</Text>
-        ) : (
-          // <FlatList
-          //   data = {data}
-          //   renderItem={({item}) => (
-          //     <PopulaJobCard 
-          //       item = {item}
-          //     />
-          //   )}
-          //   keyExtractor = {item => item?.idMeal}
-          //   contentContainerStyle = {{columnGap: SIZES.medium}}
-          //   horizontal
-          // />
-
               <SingleCard 
                 url = {urlImage}
               />
-        )}
       </View>
     </View>
   )

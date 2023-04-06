@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   logoContainer: () => ({
     // width: 50,
     // height: 50,
-    width: 320,
+    width: 350,
     height: 150,
     // borderColor: "red",
     // borderWidth: 1,

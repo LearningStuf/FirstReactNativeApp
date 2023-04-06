@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: (selectedJob, item) => ({
     
     // padding: SIZES.xLarge,
-    // backgroundColor: selectedJob === item.idMeal ? COLORS.primary : "#FFF",
+    backgroundColor: selectedJob === item.idMeal ? COLORS.primary : "#FFF",
     // borderColor: "red",
     // borderWidth: 1,
     borderRadius: SIZES.medium,

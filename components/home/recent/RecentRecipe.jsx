@@ -14,13 +14,10 @@ const RecentRecipe = () => {
   // const error = false;
 
   // const {data, isLoading, error} = useFetch()
-  const { data, isLoading, error } = useFetch("search", {
-    query: "React developer",
-    num_pages: "1",
-  });
+  const { data, isLoading, error } = useFetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast", "");
 
-  console.log(data)
-
+  // console.log(data)
+  var newData = data.meals
 
   return (
     <View style = {styles.container}>
@@ -37,7 +34,7 @@ const RecentRecipe = () => {
           <Text>Something went wrogn</Text>
         ) : (
           <FlatList
-            data = {data}
+            data = {newData}
             renderItem={({item}) => (
               <PopulaJobCard 
                 item = {item}

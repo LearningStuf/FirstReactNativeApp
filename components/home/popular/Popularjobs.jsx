@@ -1,26 +1,23 @@
 import {useState} from 'react'
-import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
 import { useRouter } from 'expo-router'
-
+import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
 import styles from './popularjobs.style'
 import  {COLORS, SIZES}  from '../../../constants';
 import PopulaJobCard from '../../common/cards/popular/PopularJobCard';
 import useFetch from '../../../hook/useFetch';
 
 const Popularjobs = () => {
-
   const router = useRouter();
-  // const isLoading  = false;
-  // const error = false;
+  // var url = "https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast"
+  const { data, isLoading, error } = useFetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast", "");
 
-  // const {data, isLoading, error} = useFetch()
-  const { data, isLoading, error } = useFetch("search", {
-    query: "React developer",
-    num_pages: "1",
-  });
+  var newData = data.meals
+  const [selectedJob, setSelectedJob] = useState();
 
-  console.log(data)
-
+  const handleCardPress = (item) => {
+    router.push(`/recipe-details/${item.idMeal}`);
+    setSelectedJob(item.idMeal);
+  };
 
   return (
     <View style = {styles.container}>
@@ -37,10 +34,12 @@ const Popularjobs = () => {
           <Text>Something went wrogn</Text>
         ) : (
           <FlatList
-            data = {data}
+            data = {newData}
             renderItem={({item}) => (
               <PopulaJobCard 
                 item = {item}
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
               />
             )}
             keyExtractor = {item => item?.idMeal}

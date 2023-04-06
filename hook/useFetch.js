@@ -5,12 +5,16 @@ const useFetch = (endpoint,query) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+  
+    // console.log("This is the useFetch")
+    // console.log(endpoint)
 
     const  options = {
         method: "GET",
-        url: `https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast`,
+        url: `${endpoint}`,
         headers: {
         },
+
 
         // url: `https://jsearch.p.rapidapi.com/${endpoint}`,
         // headers: {
@@ -25,11 +29,11 @@ const useFetch = (endpoint,query) => {
     
         try {
             const response = await axios.request(options);
-            setData(response.data.meals);
+            setData(response.data);
             setIsLoading(false);
         } catch (error) {
           setError(error);
-          console.log(error)
+          // console.log(error)
         } finally {
           setIsLoading(false);
         }

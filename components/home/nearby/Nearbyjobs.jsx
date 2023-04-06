@@ -1,34 +1,24 @@
 import {useState} from 'react'
-import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
 import { useRouter } from 'expo-router'
-
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
 import styles from './nearbyjobs.style'
 import  {COLORS, SIZES}  from '../../../constants';
-// import PopulaJobCard from '../../common/cards/singleCard/SingleCard';
-import SingleCard from '../../common/cards/singleCard/SingleCard';
+import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import useFetch from '../../../hook/useFetch';
 
 const Nearbyjobs = () => {
-
   const router = useRouter();
-  // const isLoading  = false;
-  // const error = false;
 
-  // const {data, isLoading, error} = useFetch()
-  const { data, isLoading, error } = useFetch("search", {
-    query: "React developer",
-    num_pages: "1",
-  });
+  const { data, isLoading, error } = useFetch("https://www.themealdb.com/api/json/v1/1/categories.php", "");
 
-  var urlImage = "https://images.unsplash.com/photo-1543353071-10c8ba85a904?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  var newData = data.categories
 
   console.log(data)
-
 
   return (
     <View style = {styles.container}>
       <View style = {styles.header}>
-        <Text style = {styles.headerTitle}>Search By Category</Text>
+        <Text style = {styles.headerTitle}>Select Category</Text>
         {/* <TouchableOpacity>
           <Text style = {styles.headerBtn}>Show all</Text>
         </TouchableOpacity> */}
@@ -39,21 +29,13 @@ const Nearbyjobs = () => {
         ) : error ?(
           <Text>Something went wrogn</Text>
         ) : (
-          // <FlatList
-          //   data = {data}
-          //   renderItem={({item}) => (
-          //     <PopulaJobCard 
-          //       item = {item}
-          //     />
-          //   )}
-          //   keyExtractor = {item => item?.idMeal}
-          //   contentContainerStyle = {{columnGap: SIZES.medium}}
-          //   horizontal
-          // />
-
-              <SingleCard 
-                url = {urlImage}
-              />
+          newData?.map((categ) => (
+            <NearbyJobCard
+              job = {categ}
+              key  = {'categ-${categ?.idCategory}'}
+              handleNavigate = {() => router.push(`/recipe-details/${categ.idCategory}`)}
+            />
+          ))
         )}
       </View>
     </View>

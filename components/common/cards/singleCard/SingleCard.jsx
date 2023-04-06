@@ -1,14 +1,19 @@
 import React from 'react'
+import { useRouter } from "expo-router"
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 
 import styles from './SingleCard.style'
 
-const PopularJobCard = ({item, url, selectedJob, handleCardPress}) => {
+const SingleCard = ({url,handleNavigate}) => {
+
+  // console.log("This is the card")
+  // console.log(url)
+  const router = useRouter();
   return (
-    <TouchableOpacity style = {styles.container()}
-      onPress = {() => handleCardPress()}
-    >
-      <TouchableOpacity style = {styles.logoContainer()}>
+    <TouchableOpacity style = {styles.container()} >
+      <TouchableOpacity style = {styles.logoContainer()}
+        onPress = {handleNavigate}
+      >
         <Image
           source={{uri: url}}
           // resizeMode='cover'
@@ -23,10 +28,8 @@ const PopularJobCard = ({item, url, selectedJob, handleCardPress}) => {
           {}
         </Text>
       </View>
-    
-    
     </TouchableOpacity>
   )
 }
 
-export default PopularJobCard
+export default SingleCard

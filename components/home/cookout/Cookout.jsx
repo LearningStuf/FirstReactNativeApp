@@ -34,27 +34,9 @@ const Cookout = () => {
         </TouchableOpacity> */}
       </View>
       <View style = {styles.cardsContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="large" color={COLORS.primary} />
-        ) : error ?(
-          <Text>Something went wrogn</Text>
-        ) : (
-          // <FlatList
-          //   data = {data}
-          //   renderItem={({item}) => (
-          //     <PopulaJobCard 
-          //       item = {item}
-          //     />
-          //   )}
-          //   keyExtractor = {item => item?.idMeal}
-          //   contentContainerStyle = {{columnGap: SIZES.medium}}
-          //   horizontal
-          // />
-
               <SingleCard 
                 url = {urlImage}
-              />
-        )}
+              />     
       </View>
     </View>
   )
