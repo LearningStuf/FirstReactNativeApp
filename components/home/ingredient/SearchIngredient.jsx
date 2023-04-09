@@ -20,8 +20,15 @@ const SearchIngredient = (img) => {
   //   num_pages: "1",
   // });
 
-  var urlImage = img.img
-  var Title = img.localTitle
+  const urlImage = img.img
+  const Title = img.localTitle
+  const RoutToPush = img.routToPush
+
+
+  const handleNavigate = () => {
+    if (RoutToPush) {
+    router.push(RoutToPush)
+  }}
 
   // console.log(data)
   // console.log ("This is search ingredient")
@@ -40,7 +47,7 @@ const SearchIngredient = (img) => {
 
         <SingleCard 
           url = {urlImage}
-          handleNavigate = {() => router.push(`/Category/categories`)}
+          handleNavigate = {handleNavigate}
         />
 
       </View>

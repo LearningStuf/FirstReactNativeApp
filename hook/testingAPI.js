@@ -24,12 +24,12 @@ const testingAPI = (endpoint, query) => {
 
     try {
         const response = await axios.request(options);
-        console.log(response.data.meals)
+        // console.log(response.data.meals)
         setData(response.data);
         setIsLoading(false);
     } catch (error) {
       setError(error);
-      console.log(error)
+      // console.log(error)
     } finally {
       setIsLoading(false);
     }

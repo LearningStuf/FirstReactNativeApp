@@ -13,7 +13,7 @@ const Nearbyjobs = (url) => {
 
   var newData = data.categories
 
-  console.log(data)
+  // console.log(newData)
 
   return (
     <View style = {styles.container}>
@@ -32,7 +32,7 @@ const Nearbyjobs = (url) => {
           newData?.map((categ) => (
             <NearbyJobCard
               job = {categ}
-              key  = {'categ-${categ?.idCategory}'}
+              key  = {categ?.idCategory}
               handleNavigate = {() => router.push(`/recipe-by-categories/${categ.strCategory}`)}
             />
           ))

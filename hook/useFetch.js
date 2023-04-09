@@ -7,7 +7,7 @@ const useFetch = (endpoint,query) => {
     const [error, setError] = useState(null);
   
     // console.log("This is the useFetch")
-    // console.log(endpoint)
+    // console.log("The endpoint", endpoint)
 
     const  options = {
         method: "GET",
