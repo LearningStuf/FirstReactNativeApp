@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Alert} from 'react-native'
 import { Stack, useRouter } from "expo-router";
 import HostCookout from '../../components/home/cookout/HostCookout';
+import JoinCookout from '../../components/home/cookout/JoinCookout';
 import { ScreenHeaderBtn } from '../../components';
 
 import {COLORS, icons, images, SIZES} from "../../constants";
@@ -42,9 +43,10 @@ const cookout = () => {
                       localTitle = {"Host a Cookout"}
                       routToPush = {"/Cookouts/hosting"}
                   />
-                  <HostCookout
+                  <JoinCookout
                       img= {"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=481&q=80"}
                       localTitle= {"Join a Cookout"}
+                      routToPush = {"/Cookouts/joinCookout"}
                   />
           </View>
           </ScrollView>

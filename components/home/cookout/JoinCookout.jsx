@@ -8,37 +8,9 @@ import axios from 'axios';
 
 
 
-const HostCookout = (img) => {
+const JoinCookout = (img) => {
 
-
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      location = {...location,
-      User: "Hassan"}
-      setLocation(location);
-    })();
-  }, []);
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location); 
-  }
-
-
-  
+    
   const router = useRouter();
   // const isLoading  = false;
   // const error = false;
@@ -56,23 +28,12 @@ const HostCookout = (img) => {
 
   
 
-  const handleNavigate = async (e) => {
-    e.preventDefault();
-    try{
-      const resp = await axios.post("http://10.0.2.2:3000/create",location)
-      console.log("This is the location data retreived", location)
-      console.log("This is the response of the firebase server", resp.data)
-    }
-    catch (error) {
-      console.log(error)
-    }
-    finally {
+  const handleNavigate = () => {
+   
       if (RoutToPush) {
         router.push(RoutToPush)
         }
-    }
-
-
+    
   }
 
   // console.log(data)
@@ -100,4 +61,4 @@ const HostCookout = (img) => {
   )
 }
 
-export default HostCookout
+export default JoinCookout
