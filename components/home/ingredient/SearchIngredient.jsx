@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, Alert} from 'react-native'
 import { useRouter } from 'expo-router'
 
 import styles from './searchIngredient.style'
@@ -10,6 +10,7 @@ import useFetch from '../../../hook/useFetch';
 
 const SearchIngredient = (img) => {
 
+  
   const router = useRouter();
   // const isLoading  = false;
   // const error = false;
@@ -28,7 +29,8 @@ const SearchIngredient = (img) => {
   const handleNavigate = () => {
     if (RoutToPush) {
     router.push(RoutToPush)
-  }}
+    }
+}
 
   // console.log(data)
   // console.log ("This is search ingredient")

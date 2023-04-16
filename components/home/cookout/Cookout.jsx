@@ -36,6 +36,7 @@ const Cookout = () => {
       <View style = {styles.cardsContainer}>
               <SingleCard 
                 url = {urlImage}
+                handleNavigate = {() => router.push(`/Cookouts/cookout`)}
               />     
       </View>
     </View>

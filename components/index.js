@@ -8,6 +8,7 @@ import RecentRecipe from "./home/recent/RecentRecipe";
 import SearchIngredient from "./home/ingredient/SearchIngredient";
 import Recommend from "./home/recommend/Recommend";
 import Cookout from "./home/cookout/Cookout";
+
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -32,5 +33,6 @@ export {
   RecentRecipe,
   SearchIngredient,
   Recommend,
-  Cookout
+  Cookout,
+
 };
