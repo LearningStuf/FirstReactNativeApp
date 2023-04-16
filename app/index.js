@@ -2,12 +2,28 @@
 import { useState } from "react";
 import { View, ScrollView,SafeAreaView } from "react-native";
 import { Stack, useRouter } from "expo-router";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {COLORS, icons, images, SIZES} from "../constants";
 import {Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome, RecentRecipe, SearchIngredient, Recommend, Cookout} from "../components";
 
 const Home = () => {
     const router = useRouter();
+
+    const storeData = async (value) => {
+        
+        try {
+
+          await AsyncStorage.setItem('UserName', value)
+          console.log(value)
+        } catch (e) {
+          
+        }
+    }
+
+    storeData("Hassan");
+
+
   return (
     <SafeAreaView style ={{flex: 1, backgroundColor: COLORS.lightWhite}}>
         <Stack.Screen

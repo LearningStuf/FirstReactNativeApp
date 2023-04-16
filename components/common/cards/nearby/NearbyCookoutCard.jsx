@@ -10,7 +10,7 @@ const NearbyCookoutCard = ({job, handleNavigate}) => {
     >
       <View style = {styles.textContainer}>
         <Text style = {styles.jobName}>
-          {job.latitude}
+          {job.user}
         </Text>
       </View>
       <TouchableOpacity style = {styles.logoContainer}

@@ -5,14 +5,31 @@ import * as Location from 'expo-location';
 import styles from './cookout.style'
 import SingleCard from '../../common/cards/singleCard/SingleCard';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 
 const HostCookout = (img) => {
-
-
+  
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [user, setUser] = useState(null);
+
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('UserName')
+      console.log("This is the value of the user", value);
+      if(value !== null) {
+        setUser(value)
+      }
+    } catch(e) {
+      // error reading value
+    }
+  }
+
+  getData();
 
   useEffect(() => {
     (async () => {
@@ -24,8 +41,6 @@ const HostCookout = (img) => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      location = {...location,
-      User: "Hassan"}
       setLocation(location);
     })();
   }, []);
@@ -59,9 +74,11 @@ const HostCookout = (img) => {
   const handleNavigate = async (e) => {
     e.preventDefault();
     try{
-      const resp = await axios.post("http://10.0.2.2:3000/create",location)
-      console.log("This is the location data retreived", location)
-      console.log("This is the response of the firebase server", resp.data)
+      let body = {...location, 
+        user}
+      const resp = await axios.post("http://10.0.2.2:3000/create",body)
+      console.log("This is the location data retreived", body)
+      // console.log("This is the response of the firebase server", resp.data)
     }
     catch (error) {
       console.log(error)
