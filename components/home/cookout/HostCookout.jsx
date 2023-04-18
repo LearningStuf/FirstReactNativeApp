@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
+import * as Location from 'expo-location';
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, Alert} from 'react-native'
 import { useRouter } from 'expo-router'
-import * as Location from 'expo-location';
 import styles from './cookout.style'
 import SingleCard from '../../common/cards/singleCard/SingleCard';
 import axios from 'axios';
@@ -15,12 +15,30 @@ const HostCookout = (img) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [user, setUser] = useState(null);
+  let body;
+  
+  useEffect(() => {
+    (async () => {
+      // console.log ("I am insde the block that checks for location")
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      // console.log("This is the location", location)
+
+    })();
+  }, []);
 
 
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem('UserName')
-      console.log("This is the value of the user", value);
+      // console.log("This is the value of the user", value);
       if(value !== null) {
         setUser(value)
       }
@@ -31,26 +49,14 @@ const HostCookout = (img) => {
 
   getData();
 
-  useEffect(() => {
-    (async () => {
-      
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
+ 
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-  }, []);
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location); 
-  }
+    let text = 'Waiting..';
+    if (errorMsg) {
+      text = errorMsg;
+    } else if (location) {
+      text = JSON.stringify(location); 
+    }
 
 
   
@@ -74,10 +80,22 @@ const HostCookout = (img) => {
   const handleNavigate = async (e) => {
     e.preventDefault();
     try{
-      let body = {...location, 
-        user}
-      const resp = await axios.post("http://10.0.2.2:3000/create",body)
-      console.log("This is the location data retreived", body)
+
+      console.log("This is the location in the try block", location)
+      if (location) {
+          body = {...location, 
+          user}
+      }
+      else
+      {
+        await timeout(1000);
+        body = {...location, 
+          user}
+
+      }
+      // const resp = await axios.post("http://10.0.2.2:3000/create",body)
+      const resp = await axios.post("http://192.168.117.22:3000/create",body)
+      console.log("This is the location data being sent to the cloud", body)
       // console.log("This is the response of the firebase server", resp.data)
     }
     catch (error) {

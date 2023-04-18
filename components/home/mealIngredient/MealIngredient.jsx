@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router'
 import { View, Text, TouchableOpacity, ActivityIndicator, Image } from 'react-native'
 import styles from './MealIngredient.style'
 import  {COLORS, SIZES, FONT}  from '../../../constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import MealByCategCard from '../../common/cards/mealByCateg/MealByCategCard';
 import useFetch from '../../../hook/useFetch';
@@ -12,16 +13,43 @@ const MealIngredient = (url) => {
     const router = useRouter();
     const newUrl = url.url;
 
+
+
     // console.log("this is the url being passed", newUrl)
 
     const { data, isLoading, error } = useFetch(newUrl, "");
+ 
     const newData = data.meals
     const ingredients = []
     let instructions = ""
     let urlForImage = ""
     let mealName = "";
 
-    //  console.log("Data inside meal ingredients", newData)
+
+    console.log("Data inside meal ingredients", newData)
+
+
+    // console.log("Data inside meal ingredients", recipe)
+
+    // console.log("Data inside meal ingredients", newData)
+
+    const storeData = async (value) => {
+        try {
+            
+        //   const jsonValue = JSON.stringify(value)
+        const jsonValue = JSON.stringify(value)
+          console.log("This is the value", jsonValue)
+          await AsyncStorage.setItem('Testing1', jsonValue)
+        } catch (e) {
+          // saving error
+        }
+    }
+
+    storeData(data);
+
+
+
+
 
     const letsGetTheIngredients = () => {
         

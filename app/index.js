@@ -8,6 +8,7 @@ import {COLORS, icons, images, SIZES} from "../constants";
 import {Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome, RecentRecipe, SearchIngredient, Recommend, Cookout} from "../components";
 
 const Home = () => {
+    const [searchTerm, setSearchTerm] = useState("");
     const router = useRouter();
 
     const storeData = async (value) => {
@@ -15,13 +16,15 @@ const Home = () => {
         try {
 
           await AsyncStorage.setItem('UserName', value)
-          console.log(value)
+        //   console.log(value)
         } catch (e) {
           
         }
     }
 
-    storeData("Hassan");
+
+    storeData("Sheikh Hassan Haroon");
+
 
 
   return (
@@ -48,6 +51,13 @@ const Home = () => {
                 }}
                 >
                     <Welcome
+                        searchTerm={searchTerm}
+                        setSearchTerm={setSearchTerm}
+                        handleClick={() => {
+                        if (searchTerm) {
+                            router.push(`/Searching/${searchTerm}`)
+                        }
+                        }}
                     />
                     <Popularjobs/>
                     <RecentRecipe/>
