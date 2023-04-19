@@ -155,7 +155,7 @@ export default function Index() {
         onPress={auth ? getUserData : () => promptAsync({ useProxy: true, showInRecents: true })}
       />
       {auth ? <Button title="Logout" onPress={logout} /> : undefined}
-      {/* {auth ? <Redirect href="/home" /> : undefined} */}
+      {auth ? <Redirect href="/home" /> : undefined}
       <StatusBar style="auto" />
     </View>
   );

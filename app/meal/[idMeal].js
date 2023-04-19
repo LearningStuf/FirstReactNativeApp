@@ -40,8 +40,8 @@ const Meal = () => {
                     }}
                 >
 
-                    
-                    <MealIn      gredient
+                
+                    <MealIngredient
                             url = {urlToPass}
                     />
 
