@@ -41,7 +41,7 @@ const Meal = () => {
                 >
 
                     
-                    <MealIngredient
+                    <MealIn      gredient
                             url = {urlToPass}
                     />
 
