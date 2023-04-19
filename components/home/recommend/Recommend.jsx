@@ -36,7 +36,8 @@ const Recommend = () => {
       <View style = {styles.cardsContainer}>
               <SingleCard 
                 url = {urlImage}
-                handleNavigate = {() => router.push(`/meal/random`)}
+                // handleNavigate = {() => router.push(`/meal/random`)}
+                handleNavigate = {() => router.push(`/meal/testingLogin`)}
               />
       </View>
     </View>

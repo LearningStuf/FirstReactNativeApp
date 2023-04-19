@@ -36,7 +36,7 @@ import { Redirect } from "expo-router";
   expo start --dev-client
 */
 
-export default function Index() {
+const testingFetch = () => {
   const [userInfo, setUserInfo] = useState();
   const [auth, setAuth] = useState();
   const [requireRefresh, setRequireRefresh] = useState(false);
@@ -154,12 +154,15 @@ export default function Index() {
         title={auth ? "Get User Data": "Login"} 
         onPress={auth ? getUserData : () => promptAsync({ useProxy: true, showInRecents: true })}
       />
-      {auth ? <Button title="Logout" onPress={logout} /> : undefined}
-      {/* {auth ? <Redirect href="/home" /> : undefined} */}
+      {/* {auth ? <Button title="Logout" onPress={logout} /> : undefined} */}
+      {auth ? <Redirect href="/home" /> : undefined}
       <StatusBar style="auto" />
     </View>
   );
 }
+
+
+export default testingFetch
 
 const styles = StyleSheet.create({
   container: {
