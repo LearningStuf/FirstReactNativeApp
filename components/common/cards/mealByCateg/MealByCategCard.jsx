@@ -4,6 +4,11 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import styles from './MealByCategCard.style'
 
 const MealByCategCard = ({job, handleNavigate}) => {
+
+  const handleLongPress = () => {
+    console.log("long press")
+  }
+
   return (
     <TouchableOpacity 
       style = {styles.container}
@@ -15,6 +20,7 @@ const MealByCategCard = ({job, handleNavigate}) => {
       </View>
       <TouchableOpacity style = {styles.logoContainer}
         onPress = {handleNavigate}  
+        onLongPress={() => handleLongPress()}
       >
         <Image
           source={{uri: job.strMealThumb}}

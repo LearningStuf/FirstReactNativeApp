@@ -45,7 +45,6 @@ const Random = () => {
                             url = {urlToPass}
                     />
 
-
                 </View>
             </ScrollView>
 
