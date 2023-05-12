@@ -34,8 +34,17 @@ const MealIngredient = (url) => {
         db.transaction
     }, []);
 
- 
-
+    // useEffect(() => { 
+    //   console.log('This is the next useEffect')
+    //   db.transaction(tx => {
+    //     tx.executeSql('INSERT INTO mealsRecent (mealId, mealThumb, mealName ) values (?,?,?)', [newData[0].idMeal, newData[0].strMealThumb, newData[0].strMeal],
+    //       (txObj, resultSet) => {
+    //         console.log("Data inserted for recent", resultSet)
+    //       },
+    //       (txObj, error) => console.log(error)
+    //     );
+    //   });
+    // }, []);
 
 
     const letsGetTheIngredients = () => {
@@ -85,7 +94,7 @@ const MealIngredient = (url) => {
                     //body
                     'Youre Recipe has been saved to your favorites',
                     [
-                      { text: 'Yes', onPress: () => router.push('/home') },
+                      { text: 'Yes', onPress: () => router.push({pathname: '/home' , params : newData[0].idMeal})},
                       // {
                       //   text: 'No',
                       //   onPress: () => console.log('No Pressed'),

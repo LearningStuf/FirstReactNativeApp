@@ -4,12 +4,19 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import styles from './popularjobcard.style'
 
 const PopularJobCard = ({item, selectedJob, handleCardPress}) => {
+
+  const RoutePushPress = () => {
+    handleCardPress(item)
+  }
+
   return (
     <TouchableOpacity 
       style = {styles.container(selectedJob, item)}
-      onPress = {() => handleCardPress(item)}
+     onPress = {() => RoutePushPress()}
     >
-      <TouchableOpacity style = {styles.logoContainer(selectedJob, item)}>
+      <TouchableOpacity style = {styles.logoContainer(selectedJob, item)}
+      onPress = {() => RoutePushPress()}
+      >
         <Image
           source={{uri: item.mealThumb}}
           // resizeMode='cover'

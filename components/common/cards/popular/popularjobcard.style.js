@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: (selectedJob, item) => ({
     
     // padding: SIZES.xLarge,
-    backgroundColor: selectedJob === item.idMeal ? COLORS.primary : "#FFF",
+    backgroundColor: selectedJob === item.id ? COLORS.primary : "#FFF",
     // borderColor: "red",
     // borderWidth: 1,
     borderRadius: SIZES.medium,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     height: 150,
     // borderColor: "red",
     // borderWidth: 1,
-    backgroundColor: selectedJob === item.idMeal ? "#FFF" : COLORS.white,
+    backgroundColor: selectedJob === item.id ? "#FFF" : COLORS.white,
     // borderRadius: SIZES.medium,
     justifyContent: "center",
     alignItems: "center",
@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
   },
   jobName: (selectedJob, item) => ({
     width: 150,
-    fontSize: SIZES.small,
+    fontSize: SIZES.medium,
     fontFamily: FONT.medium,
-    color: selectedJob === item.idMeal ? COLORS.white : COLORS.primary,
+    color: selectedJob === item.id ? COLORS.white : COLORS.primary,
   }),
   infoWrapper: {
     flexDirection: "row",
