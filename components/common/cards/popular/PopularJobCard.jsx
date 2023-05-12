@@ -12,7 +12,7 @@ const PopularJobCard = ({item, selectedJob, handleCardPress}) => {
   return (
     <TouchableOpacity 
       style = {styles.container(selectedJob, item)}
-     onPress = {() => RoutePushPress()}
+      onPress = {() => RoutePushPress()}
     >
       <TouchableOpacity style = {styles.logoContainer(selectedJob, item)}
       onPress = {() => RoutePushPress()}
