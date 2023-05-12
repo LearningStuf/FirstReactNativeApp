@@ -58,8 +58,14 @@ const RecentRecipe = () => {
                     );
                   });
                   
-                  
-
+                  db.transaction(tx => {
+                    tx.executeSql('VACUUM' , null,
+                      (txObj, resultSet) => {
+                        console.log("all Vaccumed")
+                      },
+                      (txObj, error) => console.log(error)
+                    );
+                  });
       
       
                 }}>
