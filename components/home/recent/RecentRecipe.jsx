@@ -29,7 +29,7 @@ const RecentRecipe = () => {
     });
 
     db.transaction(tx => {
-      tx.executeSql('SELECT * FROM mealsTest', null,
+      tx.executeSql('SELECT * FROM mealsRecent', null,
         (txObj, resultSet) => setMeals(resultSet.rows._array),
         (txObj, error) => console.log(error)
       );
@@ -45,7 +45,24 @@ const RecentRecipe = () => {
     <View style = {styles.container}>
       <View style = {styles.header}>
         <Text style = {styles.headerTitle}>Recent Recipies</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+              onPress = {() =>
+                {
+                  
+                  db.transaction(tx => {
+                    tx.executeSql('DELETE FROM mealsRecent' , null,
+                      (txObj, resultSet) => {
+                        console.log("all deleted")
+                      },
+                      (txObj, error) => console.log(error)
+                    );
+                  });
+                  
+                  
+
+      
+      
+                }}>
           <Text style = {styles.headerBtn}>Show all</Text>
         </TouchableOpacity>
       </View>

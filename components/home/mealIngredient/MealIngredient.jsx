@@ -22,6 +22,7 @@ const MealIngredient = (url) => {
     let instructions = ""
     let urlForImage = ""
     let mealName = "";
+    // let checker = newData[0]?.idMeal;
     // console.log("Data inside meal ingredients", newData)
 
     const db = SQLite.openDatabase('example.db');
@@ -34,17 +35,40 @@ const MealIngredient = (url) => {
         db.transaction
     }, []);
 
-    // useEffect(() => { 
-    //   console.log('This is the next useEffect')
-    //   db.transaction(tx => {
-    //     tx.executeSql('INSERT INTO mealsRecent (mealId, mealThumb, mealName ) values (?,?,?)', [newData[0].idMeal, newData[0].strMealThumb, newData[0].strMeal],
-    //       (txObj, resultSet) => {
-    //         console.log("Data inserted for recent", resultSet)
-    //       },
-    //       (txObj, error) => console.log(error)
-    //     );
-    //   });
-    // }, []);
+    console.log(data.length)
+    
+    // console.log(newData)
+
+    useEffect(() => { 
+
+        if(newData) {
+            console.log("This is the data", newData)
+            SaveToRecent();
+        }
+    
+    //   console.log("This is the data", newData[0]?.idMeal)
+    // if (checker) {
+        // console.log("This is the data", newData[0]?.idMeal)
+    // }
+    //   SaveToRecent();
+    }, [data]);
+
+    const SaveToRecent = () => {
+
+        db.transaction(tx => {
+            tx.executeSql('INSERT INTO mealsRecent (mealId, mealThumb, mealName ) values (?,?,?)', [newData[0].idMeal, newData[0].strMealThumb, newData[0].strMeal],
+              (txObj, resultSet) => {
+                console.log("Data inserted", resultSet)
+              },
+              (txObj, error) => {
+                console.log('Error', error)
+              }
+            );
+          });
+    }
+
+
+    
 
 
     const letsGetTheIngredients = () => {
