@@ -1,14 +1,16 @@
 import React from 'react';
-import {View, StyleSheet, Text, SafeAreaView, ScrollView} from 'react-native';
+import {View, StyleSheet, Text, SafeAreaView, ScrollView, ImageBackground} from 'react-native';
 import Background from './Background';
 import Btn from './Btn';
 import { darkGreen, green } from './Constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRouter } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { COLORS , SIZES} from '../../constants';
 
 
 const TestingLogin = (props) => {
+
+  const image = { uri: "https://docs.expo.dev/static/images/tutorial/splash.png" };
 
   const router = useRouter();
   const getPersistedAuth = async () => {
@@ -28,28 +30,22 @@ const TestingLogin = (props) => {
 
   return (
 
-    <SafeAreaView style ={{flex: 1, backgroundColor: COLORS.lightWhite}}>
-      <Background>
-      <ScrollView showsVerticalScrollIndicator = {false}>
-            <View
-                style = {{
-                    flex: 1,
-                    padding: SIZES.medium
-                }}
-                >
-      
-        <View style={{ marginHorizontal: 40, marginVertical: 100 }}>
-        <Text style={{ color: 'white', fontSize: 64 }}>Let's start</Text>
-        <Text style={{ color: 'white', fontSize: 64, marginBottom: 40 }}>Coding</Text>
-        {/* <Btn bgColor={green} textColor='white' btnLabel="Login" Press={() => props.navigation.navigate("Login")} /> */}
-        <Btn bgColor={green} textColor='white' btnLabel="Login" Press={() => {getPersistedAuth()}} />
-        <Btn bgColor='white' textColor={darkGreen} btnLabel="Signup" Press={() => router.push(`/meal/Signup`)} />
-        </View>
-                
-      </View>
+    <SafeAreaView style ={{ 
+      backgroundColor: COLORS.lightWhite,
+    }}>
+      <Stack.Screen
+        options={{
+            headerTitle : ""
+        }}
+      />
 
-      </ScrollView>
-      </Background>
+    <ImageBackground source={require("./leaves.jpg")} style={{ height: '100%' }}>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={{ color: 'white', fontSize: 64 , marginBottom: 200}}>Let's Start Cooking</Text>
+            <Btn bgColor={green} textColor='white' btnLabel="Login" Press={() => {getPersistedAuth()}} />
+            <Btn bgColor='white' textColor={darkGreen} btnLabel="Signup" Press={() => router.push(`/meal/Signup`)} />
+        </View>    
+      </ImageBackground>
     </SafeAreaView>
   );
 }

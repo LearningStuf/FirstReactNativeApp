@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import { useRouter } from 'expo-router'
 import { View, Text, TouchableOpacity, ActivityIndicator, Image } from 'react-native'
+import Btn from '../../../app/meal/Btn';
+import { darkGreen, green } from '../../../app/meal/Constants';
 import styles from './MealIngredient.style'
 import  {COLORS, SIZES, FONT}  from '../../../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -85,6 +87,11 @@ const MealIngredient = (url) => {
 
     letsGetTheIngredients();
 
+
+    saveTheRecipe =() => {
+        console.log("Hello the button is pushed")
+    }
+
     return (
         <View style = {styles.container}>
             
@@ -140,7 +147,9 @@ const MealIngredient = (url) => {
                         />
                     ))
                 )}
+
             </View>
+            <Btn bgColor={green} textColor='white' btnLabel="Save Recipe" Press={() => {saveTheRecipe()}} />
         </View>
     )
 }

@@ -136,7 +136,22 @@ const HostCookout = (img) => {
       // if (RoutToPush) {
       //   router.push(RoutToPush)
       //   }
-
+      Alert.alert(
+        //title
+        'Success',
+        //body
+        'Youre cookout has been created',
+        [
+          { text: 'Yes', onPress: () => router.push(RoutToPush) },
+          // {
+          //   text: 'No',
+          //   onPress: () => console.log('No Pressed'),
+          //   style: 'cancel',
+          // },
+        ],
+        { cancelable: false }
+        //clicking out side of alert will not cancel
+      );
       console.log("This is the response of the firebase server", body)
 
     }

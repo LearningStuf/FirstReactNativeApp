@@ -31,10 +31,11 @@ const NearByCookouts = (url) => {
         ) : error ?(
           <Text>Something went wrong</Text>
         ) : (
-          newData?.map((categ) => (
+          newData?.map((categ,idx) => (
             <NearByCookoutCard
               job = {categ}
-              key  = {categ?.timestamp}
+              uri = {`https://generatorfun.com/code/uploads/Random-Food-image-${idx +1}.jpg`}
+              key  = {idx}
             //   handleNavigate = {() => router.push("/Cookouts/cookoutMap")}
             handleNavigate = {() => router.push({pathname: "/Cookouts/cookoutMap", params : categ?.coords })}
             />

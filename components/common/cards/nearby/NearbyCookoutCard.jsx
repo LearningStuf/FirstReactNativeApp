@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 
 import styles from './nearbyjobcard.style'
 
-const NearbyCookoutCard = ({job, handleNavigate}) => {
+const NearbyCookoutCard = ({job, handleNavigate ,uri}) => {
   return (
     <TouchableOpacity 
       style = {styles.container}
@@ -17,7 +17,7 @@ const NearbyCookoutCard = ({job, handleNavigate}) => {
         onPress = {handleNavigate}  
       >
         <Image
-          source={{uri: "https://images.unsplash.com/photo-1534644107580-3a4dbd494a95?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"}}
+          source={{uri: uri}}
           // resizeMode='cover'
           style = {styles.logoImage}
         />

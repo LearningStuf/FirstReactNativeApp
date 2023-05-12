@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     // justifyContent: "space-between",
     // borderColor: "red",
     // borderWidth: 1,
-    // alignItems: "center",
+     alignItems: "center",
     // flexDirection: "row",
     // padding: SIZES.medium,
     // borderRadius: SIZES.small,
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
             // borderColor: "red",
     // borderWidth: 1,
     // justifyContent: "space-between",
-      ...SHADOWS.medium,
+    
       shadowColor: COLORS.white,
   },
   logoContainer: {
@@ -35,20 +35,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoImage: {
-    width: "70%",
-    height: "70%",
+    width: "100%",
+    height: "100%",
     borderRadius: SIZES.medium,
-    // borderColor: "red",
-    // borderWidth: 1,
+
   },
   textContainer: {
     flex: 1,
     marginHorizontal: SIZES.small,
   },
   jobName: {
-    fontSize: SIZES.medium,
+    fontSize: SIZES.large,
     fontFamily: "DMBold",
     color: COLORS.primary,
+    marginVertical: SIZES.small
   },
   jobType: {
     fontSize: SIZES.small + 2,
