@@ -1,17 +1,41 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useRouter } from 'expo-router'
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
 import styles from './popularjobs.style'
 import  {COLORS, SIZES}  from '../../../constants';
 import PopulaJobCard from '../../common/cards/popular/PopularJobCard';
 import useFetch from '../../../hook/useFetch';
+import * as SQLite from 'expo-sqlite';
 
 const Popularjobs = () => {
   const router = useRouter();
+  const [meals, setMeals] = useState([]);
+  const db = SQLite.openDatabase('example.db');
+  const [pageCheker, setPageChecker] = useState(1);
+  
+
+  useEffect(() => {
+    db.transaction(tx => {
+      tx.executeSql('CREATE TABLE IF NOT EXISTS mealsTest (id INTEGER PRIMARY KEY AUTOINCREMENT, mealId INTEGER, mealThumb TEXT, mealName TEXT)')
+    });
+
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM mealsTest', null,
+        (txObj, resultSet) => setMeals(resultSet.rows._array),
+        (txObj, error) => console.log(error)
+      );
+    });
+  }, [pageCheker]);
+
+
+  console.log("This is the meals", meals)
+
   // var url = "https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast"
   const { data, isLoading, error } = useFetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast", "");
 
   var newData = data.meals
+
+  console.log("This is the data", newData)
   const [selectedJob, setSelectedJob] = useState();
 
   const handleCardPress = (item) => {
@@ -34,7 +58,7 @@ const Popularjobs = () => {
           <Text>Something went wrogn</Text>
         ) : (
           <FlatList
-            data = {newData}
+            data = {meals}
             renderItem={({item}) => (
               <PopulaJobCard 
                 item = {item}

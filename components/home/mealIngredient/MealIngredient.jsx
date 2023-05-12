@@ -1,24 +1,20 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useRouter } from 'expo-router'
-import { View, Text, TouchableOpacity, ActivityIndicator, Image } from 'react-native'
+import { View, Text, TouchableOpacity, ActivityIndicator, Image, Alert} from 'react-native'
 import Btn from '../../../app/meal/Btn';
 import { darkGreen, green } from '../../../app/meal/Constants';
 import styles from './MealIngredient.style'
 import  {COLORS, SIZES, FONT}  from '../../../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SQLite from 'expo-sqlite';
 // import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import MealByCategCard from '../../common/cards/mealByCateg/MealByCategCard';
 import useFetch from '../../../hook/useFetch';
 import MealIngredientCard from "../../common/cards/mealIngredient/MealIngredientCard";
-
 const MealIngredient = (url) => {
     const router = useRouter();
     const newUrl = url.url;
-
-
-
     // console.log("this is the url being passed", newUrl)
-
     const { data, isLoading, error } = useFetch(newUrl, "");
  
     const newData = data.meals
@@ -26,30 +22,19 @@ const MealIngredient = (url) => {
     let instructions = ""
     let urlForImage = ""
     let mealName = "";
-
-
-    console.log("Data inside meal ingredients", newData)
-
-
-    // console.log("Data inside meal ingredients", recipe)
-
     // console.log("Data inside meal ingredients", newData)
 
-    const storeData = async (value) => {
-        try {
-            
-        //   const jsonValue = JSON.stringify(value)
-        const jsonValue = JSON.stringify(value)
-          console.log("This is the value", jsonValue)
-          await AsyncStorage.setItem('Testing1', jsonValue)
-        } catch (e) {
-          // saving error
-        }
-    }
+    const db = SQLite.openDatabase('example.db');
 
-    storeData(data);
+    useEffect(() => { 
+        db.transaction(tx => {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS mealsTest (id INTEGER PRIMARY KEY AUTOINCREMENT, mealId INTEGER, mealThumb TEXT, mealName TEXT)')
+        });
 
+        db.transaction
+    }, []);
 
+ 
 
 
 
@@ -63,7 +48,6 @@ const MealIngredient = (url) => {
             let counter = 1;
          
             while(flag) {   
-
                 if(meals?.[`strIngredient${counter}`] !== "") {  
                     
                     ingredients[counter - 1] = {
@@ -77,7 +61,6 @@ const MealIngredient = (url) => {
                     flag = false;
                 }
             }
-
             // console.log("Ingredients", ingredients)
     
  
@@ -89,12 +72,39 @@ const MealIngredient = (url) => {
 
 
     saveTheRecipe =() => {
-        console.log("Hello the button is pushed")
+
+        console.log("Save the recipe")
+
+        db.transaction(tx => {
+            tx.executeSql('INSERT INTO mealsTest (mealId, mealThumb, mealName ) values (?,?,?)', [newData[0].idMeal, newData[0].strMealThumb, newData[0].strMeal],
+              (txObj, resultSet) => {
+                console.log("Data inserted", resultSet)
+                Alert.alert(
+                    //title
+                    'Success',
+                    //body
+                    'Youre Recipe has been saved to your favorites',
+                    [
+                      { text: 'Yes', onPress: () => router.push('/home') },
+                      // {
+                      //   text: 'No',
+                      //   onPress: () => console.log('No Pressed'),
+                      //   style: 'cancel',
+                      // },
+                    ],
+                    { cancelable: false }
+                    //clicking out side of alert will not cancel
+                  );
+              },
+              (txObj, error) => console.log(error)
+            );
+          });
     }
+
 
     return (
         <View style = {styles.container}>
-            
+
             <Text style = {styles.headerTitle}>{mealName}</Text>
             
             {/* <Image
@@ -106,7 +116,6 @@ const MealIngredient = (url) => {
                     borderRadius: SIZES.xxLarge,
                 }}
             /> */}
-
             
             <View style = {styles.header}>
                 <Text style = {styles.headerTitle}>Instructions</Text>
@@ -121,7 +130,6 @@ const MealIngredient = (url) => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 }}>
-
                 <Text style = {{
                     fontSize: SIZES.large,
                     fontFamily: FONT.medium,
@@ -133,7 +141,6 @@ const MealIngredient = (url) => {
                     color: COLORS.gray,}}>{ingredients?.length-1}
                 </Text>
             </View>
-
             <View style = {styles.cardsContainer}>
                 {isLoading ? (
                     <ActivityIndicator size="large" color={COLORS.primary} />
@@ -153,5 +160,4 @@ const MealIngredient = (url) => {
         </View>
     )
 }
-
 export default MealIngredient
